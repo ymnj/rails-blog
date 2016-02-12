@@ -11,3 +11,9 @@
 <div>
 	<%= link_to 'delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>
+
+<%= form_for [@post, @comment] do |comment| %>
+	<%=  comment.label :body %>
+	<%= comment.text_area :body %>
+<%= comment.submit %>
+<% end %>
