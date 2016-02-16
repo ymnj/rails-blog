@@ -9,8 +9,9 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		post_params = params.require(:post).permit(:title, :body)
+		post_params = params.require(:post).permit(:title, :category_id, :body)
 		@post = Post.new post_params
+
 
 		if @post.save
 			redirect_to post_path(@post)
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
 
 	def update
 		@post = Post.find params[:id]
-		post_params = params.require(:post).permit(:title, :body)
+		post_params = params.require(:post).permit(:title, :category_id, :body)
 
 		if @post.update post_params
 			redirect_to post_path(@post)

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
 
   # /POSTS
-  resources :posts
+  resources :posts do 
+    resources :comments, only: [:create, :destroy]
+  end
 
 
 
