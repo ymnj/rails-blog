@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,7 +14,14 @@ Rails.application.routes.draw do
   end
 
 
+  # Users
+  resources :users, except: [:new, :index]
+  get '/signup' => 'users#new'
 
+
+  # Sessions
+  get '/login' => 'sessions#new'
+  resources :sessions, only: [:create, :destroy]
 
 
   # Example of regular route:
