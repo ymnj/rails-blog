@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
   # Sessions
   get '/login' => 'sessions#new'
-  resources :sessions, only: [:create, :destroy]
+  delete '/logout' => "sessions#destroy", as: :logout
+  resources :sessions, only: [:create]
 
 
   # Example of regular route:
