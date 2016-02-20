@@ -1,25 +1,39 @@
 <h1>This is edit single user page</h1>
 
 <%= form_for @user do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+
+  <div id="user-info">
+    <p>Personal information</p>
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
   </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+
+  <div id="change-password">
+  <p>Change Password</p>
+    <div>
+      <%= label_tag :old_password %>
+      <%= password_field_tag :old_password %>
+    </div>
+    <div>
+      <%= f.label :password, "New Password" %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, "Retype New Password" %>
+      <%= f.password_field :password_confirmation %>
+    </div>
   </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+
   <%= f.submit %>
+
 <% end %>

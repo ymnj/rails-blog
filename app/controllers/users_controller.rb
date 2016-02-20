@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_info = params.require(:user).permit(:first_name, :last_name, :email, :password)
+    user_info = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.new user_info
 
     if @user.save
@@ -22,7 +22,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:user_id])
-    user_info = params.require(:user).permit(:first_name, :last_name, :email, :password)
+    user_info = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+
+
     if @user.update user_info
       redirect_to root_path, notice: "Your info has been update"
     else
