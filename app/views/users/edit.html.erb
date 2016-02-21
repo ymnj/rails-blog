@@ -1,5 +1,8 @@
 <h1>This is edit single user page</h1>
 
+
+<%= @user.errors.full_messages.join(", ") %>
+
 <%= form_for @user do |f| %>
 
   <div id="user-info">
@@ -17,6 +20,8 @@
       <%= f.text_field :email %>
     </div>
   </div>
+
+  <%= flash[:alert] %>
 
   <div id="change-password">
   <p>Change Password</p>

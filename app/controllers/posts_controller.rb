@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
 
+	before_action :authorize, only: [:new, :edit, :update]
+	before_action :find_post, only: [:show, :edit, :update, :destroy]
+
 	def index 
-		@posts = Post.all
+		@posts = Post.order(id: :desc)
 	end
 
 	def new
@@ -22,17 +25,16 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@post = Post.find(params[:id])
 		@comment = Comment.new
 	end
 
 
 	def edit
-		@post = Post.find(params[:id])
+		redirect_to root_path, alert: "access denied" unless can? :edit, @post
 	end
 
 	def update
-		@post = Post.find params[:id]
+		redirect_to root_path, alert: "access denied" unless can? :edit, @post
 		post_params = params.require(:post).permit(:title, :category_id, :body)
 
 		if @post.update post_params
@@ -44,9 +46,15 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post = Post.find params[:id]
+		redirect_to root_path, alert: "access denied" unless can? :edit, @post
 		@post.destroy
 		redirect_to posts_path, notice: "Your post has been deleted"
+	end
+
+	private
+
+	def find_post
+		@post = Post.find params[:id]
 	end
 
 end

@@ -1,7 +1,6 @@
 <h1>Posts Index</h1>
 
-
-<%= link_to 'Make a new Post', new_post_path %>
+<%= link_to 'Make a new Post', new_post_path unless current_user.nil? %>
 
 <h2><%= flash[:notice] %></h2>
 

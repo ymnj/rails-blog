@@ -1,6 +1,6 @@
 <h1>Individual posts</h1>
 
-<h3>Tite:</h3><%= @post.title %> <br>
+<h3>Title:</h3><%= @post.title %> <br>
 
 <% if @post.category_id? %>
 	<h3>Category:</h3> <%= @post.category.title %>
@@ -8,9 +8,14 @@
 
 <h3>Body</h3>	<%= @post.body %>
 
-<% if user_signed_in? %>
+<% if can? :update, @post %>
 	<div>
 		<%= link_to 'Edit', edit_post_path(@post) %>
+	</div>
+<% end %>
+
+<% if can? :delete, @post %>
+	<div>
 		<%= link_to 'delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 	</div>
 <% end %>
@@ -20,17 +25,21 @@
 <% @post.comments.each do |comment| %>
 	<div>
 		<p><%= comment.body %></p>
+		<% if can? :delete, comment %>
+			<%= link_to 'delete', post_comment_path(@post, comment), method: :delete, data: {confirm: "Are you sure?"} %>
+		<% end %>
 	</div>
 <% end %>
 
 <hr>
 
 
-
-<%= form_for [@post, @comment] do |comment| %>
-	<div>
-		<%=  comment.label :body, "Write a comment" %> <br>
-		<%= comment.text_area :body %>
-	</div>
-		<%= comment.submit %>
+<% if user_signed_in? %>
+	<%= form_for [@post, @comment] do |comment| %>
+		<div>
+			<%=  comment.label :body, "Write a comment" %> <br>
+			<%= comment.text_area :body %>
+		</div>
+			<%= comment.submit %>
+	<% end %>
 <% end %>

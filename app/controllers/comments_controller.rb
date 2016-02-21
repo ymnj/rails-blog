@@ -13,6 +13,13 @@ class CommentsController < ApplicationController
 			render "posts/show"
 		end
 	end
+
+	def destroy
+		comment = Comment.find params[:id]
+		comment.destroy
+		redirect_to post_path(params[:post_id]), notice: "Comment deleted"
+	end
+
 end
 
 
