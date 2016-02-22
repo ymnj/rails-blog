@@ -1,45 +1,58 @@
-<h1>Individual posts</h1>
 
-<h3>Title:</h3><%= @post.title %> <br>
-
-<% if @post.category_id? %>
-	<h3>Category:</h3> <%= @post.category.title %>
-<% end %>
-
-<h3>Body</h3>	<%= @post.body %>
-
-<% if can? :update, @post %>
-	<div>
-		<%= link_to 'Edit', edit_post_path(@post) %>
-	</div>
-<% end %>
-
-<% if can? :delete, @post %>
-	<div>
-		<%= link_to 'delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-	</div>
-<% end %>
-
-<h2>Comments</h2>
-
-<% @post.comments.each do |comment| %>
-	<div>
-		<p><%= comment.body %></p>
-		<% if can? :delete, comment %>
-			<%= link_to 'delete', post_comment_path(@post, comment), method: :delete, data: {confirm: "Are you sure?"} %>
-		<% end %>
-	</div>
-<% end %>
-
-<hr>
+<!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1><%= @post.title %></h1>
+                        <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        <% if @post.category_id? %>
+													<p>Category: <%= @post.category.title %> </p>
+												<% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
 
-<% if user_signed_in? %>
-	<%= form_for [@post, @comment] do |comment| %>
-		<div>
-			<%=  comment.label :body, "Write a comment" %> <br>
-			<%= comment.text_area :body %>
-		</div>
-			<%= comment.submit %>
-	<% end %>
-<% end %>
+<!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <%= @post.body %>
+                  <% if can? :update, @post %>
+											<%= link_to 'Edit', edit_post_path(@post), :class => "edit-link" %>
+									<% end %>
+									<% if can? :delete, @post %>
+											<%= link_to 'Delete', post_path(@post), :class => "delete-link", method: :delete, data: {confirm: "Are you sure?"} %>
+									<% end %>
+                  <hr>
+                  <h4>Comments</h4>
+                  	<% @post.comments.each do |comment| %>
+											<div class="single-comment">
+												<p><%= comment.body %></p>
+												<% if can? :delete, comment %>
+													<%= link_to 'delete', post_comment_path(@post, comment), method: :delete, data: {confirm: "Are you sure?"} %>
+												<% end %>
+											</div>
+										<% end %>
+
+										<% if user_signed_in? %>
+											<%= form_for [@post, @comment] do |comment| %>
+												<div class="comment-box">
+													<%=  comment.label :body, "Write a comment" %> <br>
+													<%= comment.text_area :body %>
+												</div>
+													<%= comment.submit %>
+											<% end %>
+										<% end %>
+
+                </div>
+            </div>
+        </div>
+    </article>
+

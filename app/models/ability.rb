@@ -7,22 +7,27 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
 
-    # Can POSTS
-    can :update, Post do |post|
-        post.user == user
-    end
-    can :delete, Post do |post|
-        post.user == user
+    if user.admin?
+        can :manage, :all
+    else
+        # Can POSTS
+        can :update, Post do |post|
+            post.user == user
+        end
+        can :delete, Post do |post|
+            post.user == user
+        end
+
+        # Can COMMENTS
+        can :update, Comment do |comment|
+            comment.user == user
+        end
+        can :delete, Comment do |comment|
+            comment.user == user || comment.post.user == user
+        end
     end
 
-    # Can COMMENTS
-    can :update, Comment do |comment|
-        comment.user == user
-    end
-    can :delete, Comment do |comment|
-        comment.user == user || comment.post.user == user
-    end
-
+    
     #   if user.admin?
     #     can :manage, :all
     #   else

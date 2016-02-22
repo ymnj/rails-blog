@@ -1,12 +1,31 @@
-<h1>Posts Index</h1>
-
-<%= link_to 'Make a new Post', new_post_path unless current_user.nil? %>
 
 <h2><%= flash[:notice] %></h2>
 
-<% @posts.each do |post| %>
-	<h2><%= link_to post.title, post_path(post) %></h2>
-	<p><%= post.body %></p>
-	<hr>
-<% end %>
-
+<!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <%= link_to 'Make a new Post', new_post_path unless current_user.nil? %>
+              <% @posts.each do |post| %>
+                <div class="post-preview">
+                  <h2>
+                    <%= link_to post.title, post_path(post), :class => "post-title" %> 
+                  </h2>
+                  <h3 class="post-subtitle">
+                      <%= post.body %>
+                  </h3>
+                  
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                </div>
+                <hr>
+                <% end %>
+                
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>

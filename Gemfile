@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # CanCanCan
 gem 'cancancan', '~> 1.10'
 
+# BootStrap SASS
+gem 'bootstrap-sass'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
