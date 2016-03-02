@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
 		@comment.user = current_user
 
 		if @comment.save
-			redirect_to post_path(@post), notice: "Comment created"
+			CommentsMailer.notify_post_owner(@comment).deliver_now
+			redirect_to @comment.post, notice: "Comment made"
 		else 
 			render "posts/show"
 		end

@@ -20,12 +20,7 @@ class FavoritesController < ApplicationController
     favorite.destroy
     redirect_to post_path(post), notice: "Un-favorited!"
   end
+  
 end
 
 
-def destroy
-  campaign = Campaign.find params[:campaign_id]
-  like     = current_user.likes.find params[:id]
-  like.destroy
-  redirect_to campaign_path(campaign), notice: "Like removed!"
-end

@@ -49,4 +49,5 @@ class UsersController < ApplicationController
     params[:old_password] != params["user"]["password"] && params["user"]["password"] == params["user"]["password_confirmation"]
   end
 
+
 end
