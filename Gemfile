@@ -32,6 +32,8 @@ gem 'cancancan', '~> 1.10'
 # BootStrap SASS
 gem 'bootstrap-sass'
 
+
+gem 'delayed_job_active_record'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
