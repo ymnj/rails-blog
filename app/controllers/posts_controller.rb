@@ -12,7 +12,6 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		post_params = params.require(:post).permit(:title, :category_id, :body)
 		@post = Post.new post_params
  		@post.user = current_user
 
@@ -35,8 +34,8 @@ class PostsController < ApplicationController
 
 	def update
 		redirect_to root_path, alert: "access denied" unless can? :edit, @post
-		post_params = params.require(:post).permit(:title, :category_id, :body)
 
+		@post.slug = nil
 		if @post.update post_params
 			redirect_to post_path(@post)
 		else
@@ -53,8 +52,12 @@ class PostsController < ApplicationController
 
 	private
 
+	def post_params
+		params.require(:post).permit(:title, :category_id, :body)
+	end
+
 	def find_post
-		@post = Post.find params[:id]
+		@post = Post.friendly.find params[:id]
 	end
 
 end

@@ -1,5 +1,9 @@
 class Post < ActiveRecord::Base
 
+  # Friendly_id
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
 	# Creates a relationship to comments. If a post is deleted, so will it's comments
   belongs_to :category
   belongs_to :user
@@ -19,6 +23,7 @@ class Post < ActiveRecord::Base
   def favorite_for(user)
     favorites.find_by_user_id user
   end
+
 
 end
 

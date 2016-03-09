@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_many :favorited_posts, through: :favorites, source: :favorite
 
 
-
-
   has_secure_password
 
   validates :password, length: { minimum: 7 }, allow_nil: true
@@ -24,3 +22,4 @@ class User < ActiveRecord::Base
   end
 
 end
+

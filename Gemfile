@@ -37,6 +37,11 @@ gem 'delayed_job_active_record'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'friendly_id', '~> 5.1.0'
+
+# Simple_Form
+gem 'simple_form'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
