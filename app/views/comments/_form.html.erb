@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <%= form_for [@post, @comment], remote: true do |comment| %>
+    <div class="comment-box">
+      <%=  comment.label :body, "Write a comment" %> <br>
+      <%= comment.text_area :body %>
+    </div>
+      <%= comment.submit %>
+  <% end %>
+<% end %>
