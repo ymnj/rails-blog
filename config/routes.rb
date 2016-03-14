@@ -31,6 +31,15 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
 
 
+  #JSON POST
+  namespace :api, defaults: {format: :json} do 
+    namespace :v1 do
+      resources :posts
+    end
+  end
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

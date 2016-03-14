@@ -42,6 +42,10 @@ gem 'friendly_id', '~> 5.1.0'
 # Simple_Form
 gem 'simple_form'
 
+gem "active_model_serializers"
+
+gem "font-awesome-rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

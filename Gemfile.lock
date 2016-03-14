@@ -20,6 +20,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.9.4)
+      activemodel (>= 3.2)
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
@@ -69,6 +71,8 @@ GEM
     faker (1.6.1)
       i18n (~> 0.5)
     ffi (1.9.10)
+    font-awesome-rails (4.5.0.1)
+      railties (>= 3.2, < 5.1)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     globalid (0.3.6)
@@ -168,6 +172,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   awesome_print
   bcrypt (~> 3.1.7)
   bootstrap-sass
@@ -176,6 +181,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
   faker
+  font-awesome-rails
   friendly_id (~> 5.1.0)
   hirb
   interactive_editor
