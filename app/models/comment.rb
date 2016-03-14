@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
 	belongs_to :post
   belongs_to :user
 
+  scope :order_asc, -> {order("created_at ASC")}  
+
 
 
 	# The scope will make sure that only unique comment body per post

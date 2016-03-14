@@ -33,33 +33,22 @@
         			  <% end %>
                 
                 <%# Favorite  %>
-                <% if user_signed_in? && @post.favorited_by?(current_user) %>
-                  <%= link_to "Liked", post_favorite_path(@post, @post.favorite_for(current_user)), method: :delete %>
-                <% else %>
-                  <%= link_to "Like", post_favorites_path(@post), class: "icon-big", method: :post   %>
-                <% end %>
+                <span id="favorite-post">
+                  <%= render "favorites/post_favorite" %>
+                </span>
 
                 <hr>
                 <h4>Comments</h4>
                   
-                <% @post.comments.each do |comment| %>
-                  <div class="single-comment">
-    						  <p><%= comment.body %></p>
-    						  <% if can? :delete, comment %>
-    							 <%= link_to 'delete', post_comment_path(@post, comment), method: :delete, data: {confirm: "Are you sure?"} %>
-    						  <% end %>
-    					    </div>
-    				    <% end %>
+                <div id="post-comments"> 
+                  <% @post.comments.order_asc.each do |comment| %>
+                    <%= render "comments/comments_post", comment: comment %>
+                  <% end %>
+                </div>
 
-        				<% if user_signed_in? %>
-        					<%= form_for [@post, @comment] do |comment| %>
-        						<div class="comment-box">
-        							<%=  comment.label :body, "Write a comment" %> <br>
-        							<%= comment.text_area :body %>
-        						</div>
-        							<%= comment.submit %>
-        					<% end %>
-        				<% end %>
+        				<div id="comment-form">
+                  <%= render "comments/form" %>    
+                </div>
               </div> <%# End .col %>
             </div> <%# End .row %>
         </div> <%# End .container %>
