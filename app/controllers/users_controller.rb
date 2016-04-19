@@ -11,7 +11,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to posts_path, notice: "Account created!"
     else
-      flash[:notice] = "Please fill in the required fields"
       render :new
     end
   end
