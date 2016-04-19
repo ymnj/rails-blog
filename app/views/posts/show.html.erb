@@ -6,17 +6,20 @@
               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
                 <%= @post.body %>
-                <% if can? :update, @post %>
-        					<%= link_to 'Edit', edit_post_path(@post), :class => "edit-link" %>
-        				<% end %>
-        				<% if can? :delete, @post %>
-        				<%= link_to 'Delete', post_path(@post), :class => "delete-link", method: :delete, data: {confirm: "Are you sure?"} %>
-        			  <% end %>
-                
-                <%# Favorite  %>
-                <span id="favorite-post">
-                  <%= render "favorites/post_favorite" %>
-                </span>
+                <div class="post-options">
+                  <% if can? :update, @post %>
+          					<%= link_to 'Edit', edit_post_path(@post), :class => "edit-link" %>
+          				<% end %>
+          				<% if can? :delete, @post %>
+          				<%= link_to 'Delete', post_path(@post), :class => "delete-link", method: :delete, data: {confirm: "Are you sure?"} %>
+          			  <% end %>
+              
+
+                  <%# Favorite  %>
+                  <span id="favorite-post">
+                    <%= render "favorites/post_favorite" %>
+                  </span>
+                </div>
 
                 <hr>
                 <h4>Comments</h4>

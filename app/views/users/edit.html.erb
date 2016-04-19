@@ -1,44 +1,49 @@
-<h1>This is edit single user page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <h1>Edit User</h1>
 
+    <%= @user.errors.full_messages.join(", ") %>
 
-<%= @user.errors.full_messages.join(", ") %>
+      <%= form_for @user do |f| %>
 
-<%= form_for @user do |f| %>
+        <div id="user-info">
+          <p>Personal information</p>
+          <div class="form-group">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+        </div>
 
-  <div id="user-info">
-    <p>Personal information</p>
-    <div>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
-    <div>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
-    <div>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+        <%= flash[:alert] %>
+
+        <div id="change-password">
+        <p>Change Password</p>
+          <div class="form-group">
+            <%= label_tag :old_password %>
+            <%= password_field_tag :old_password, nil, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, "New Password" %>
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "Retype New Password" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+        </div>
+
+        <%= f.submit %>
+
+      <% end %>
     </div>
   </div>
-
-  <%= flash[:alert] %>
-
-  <div id="change-password">
-  <p>Change Password</p>
-    <div>
-      <%= label_tag :old_password %>
-      <%= password_field_tag :old_password %>
-    </div>
-    <div>
-      <%= f.label :password, "New Password" %>
-      <%= f.password_field :password %>
-    </div>
-    <div>
-      <%= f.label :password_confirmation, "Retype New Password" %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-  </div>
-
-  <%= f.submit %>
-
-<% end %>
+</div>
